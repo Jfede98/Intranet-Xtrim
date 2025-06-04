@@ -1,0 +1,136 @@
+<div class="font-ubuntu">
+    <!-- Seccion 1: Titulo y subtitulo -->
+    <div class="mb-10 px-6 md:px-12 lg:px-20 py-8">
+        <h1 class="text-corpo text-3xl font-medium mb-2">Manual de Marca</h1>
+        <p class="text-black text-xl">El manual de marca reúne las bases para aplicar correctamente la identidad de Xtrim. Su uso coherente fortalece la marca y nos ayuda, como equipo, a construir una imagen clara y sólida.</p>
+    </div>
+    <!-- Seccion 2: slider pilares de marca -->
+    <div class="mb-12 flex justify-center px-6 md:px-12 lg:px-20 pb-8">
+      <div class="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl bg-white shadow-lg" style="height: 370px;">
+        
+        <div class="flex transition-all duration-700 ease-in-out h-full"
+            [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
+            style="width: 100%;">
+          
+          <div *ngFor="let pilar of pilares" class="w-full flex-shrink-0 flex items-center pl-10 h-full">
+            
+            <div class="w-1/2 px-4">
+              <h2 class="text-3xl text-corpo font-semibold mb-4 text-center">{{ pilar.titulo }}</h2>
+              <div class="text-md text-black" [innerHTML]="pilar.descripcion"></div>
+            </div>
+
+            <div class="w-1/2 flex justify-center">
+              <img [src]="pilar.imagen" alt="{{ pilar.titulo }}" class="h-auto object-contain" />
+            </div>
+          </div>
+        </div>
+
+      <button (click)="anterior()" class="absolute left-2 top-1/2 transform -translate-y-1/2 z-20">
+        <img src="./flecha-izquierda.svg" alt="Anterior" class="w-10 h-10" />
+      </button>
+      <button (click)="siguiente()" class="absolute right-2 top-1/2 transform -translate-y-1/2 z-20">
+        <img src="./flecha-derecha.svg" alt="Siguiente" class="w-10 h-10" />
+      </button>
+      </div>
+
+
+    </div>
+
+    <!-- Seccion 3: Ver manual de marca -->
+    <div class="bg-white w-full py-8 px-6 mb-12">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h3 class="text-corpo text-2xl font-medium mb-2">¿Quieres ver el detalle completo del manual de marca?</h3>
+          <p>Revisa directrices, aplicaciones y casos especiales del Manual de marca.</p>
+        </div>
+        <button
+        (click)="abrirModal()" 
+        class="bg-white text-lightblack border-2 border-lightcorpo px-4 py-2 rounded-lg hover:border-lightblack hover:bg-corpogray cursor-pointer whitespace-nowrap">
+          Ver el documento completo
+        </button>
+
+      </div>
+    </div>
+    <!-- Modal para PDF -->
+    <div *ngIf="modalAbierto" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg w-full max-w-4xl h-[85vh] relative p-6">
+        <button (click)="cerrarModal()" class="absolute top-2 right-4 text-black text-2xl font-bold cursor-pointer">&times;</button>
+        
+        <h2 class="text-xl font-semibold text-corpo mb-4">Manual de Marca</h2>
+        
+        <!-- PDF embebido -->
+        <embed src="/manual-marca.pdf" type="application/pdf" class="w-full h-[calc(100%-80px)] rounded border" />
+
+        <!-- Botón de descarga -->
+        <div class="flex justify-end mt-4">
+          <a href="/manual-marca.pdf" download class="bg-[linear-gradient(var(--color-grad-start),var(--color-grad-end))] text-white px-4 py-2 rounded-lg hover:bg-[linear-gradient(var(--color-hover),var(--color-hover))] transition-colors cursor-pointer">
+            Descargar PDF
+          </a>
+        </div>
+      </div>
+    </div>
+
+      
+     <!-- Seccion 4: Segundo titulo y subtitulo -->
+     <div class="mb-8 px-6 md:px-12 lg:px-20 py-8">
+        <h1 class="text-corpo text-3xl font-medium mb-2">Recursos para mantener la identidad de marca</h1>
+        <p class="text-black text-xl">Descarga los archivos esenciales para aplicar correctamente el manual de marca en todos tus documentos y presentaciones.</p>
+      </div>      
+      <!-- Seccion 5: cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 md:px-12 lg:px-20 py-8">
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition max-w-xs mx-auto">
+          <div class="flex justify-center mb-4">
+            <img src="./symbols_folder.svg" alt="" class="w-28 h-28 object-contain" />
+          </div>
+          <h1 class="font-semibold text-lg mb-2 text-center">Template PowerPoint</h1>
+          <p class="text-justify text-sm mb-4">Presentación editable con diseño corporativo, ideal para reuniones y exposiciones internas.</p>
+          <p class="text-center text-corpo font-medium cursor-pointer">Ver los documentos &gt;</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition max-w-xs mx-auto">
+          <div class="flex justify-center mb-4">
+            <img src="./symbols_file.svg" alt="" class="w-28 h-28 object-contain" />
+          </div>
+          <h1 class="font-semibold text-lg mb-2 text-center">Firma Electrónica</h1>
+          <p class="text-justify text-sm mb-4">Guía práctica para aplicar la firma electrónica en contratos, autorizaciones y trámites internos.</p>
+          <p class="text-center text-corpo font-medium cursor-pointer">Ver los documentos &gt;</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition max-w-xs mx-auto">
+          <div class="flex justify-center mb-4">
+            <img src="./symbols_linkedin.svg" alt="" class="w-28 h-28 object-contain" />
+          </div>
+          <h1 class="font-semibold text-lg mb-2 text-center">Diseño Perfil LinkedIn</h1>
+          <p class="text-justify text-sm mb-4">Instructivo visual para crear un perfil profesional alineado a la marca y cultura de Xtrim®.</p>
+          <p class="text-center text-corpo font-medium cursor-pointer">Ver los documentos &gt;</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition max-w-xs mx-auto">
+          <div class="flex justify-center mb-4">
+            <img src="./symbols_typo.svg" alt="" class="w-28 h-28 object-contain" />
+          </div>
+          <h1 class="font-semibold text-lg mb-2 text-center">Tipografías</h1>
+          <p class="text-justify text-sm mb-4">Archivo con las fuentes oficiales de Xtrim® para asegurar coherencia en todos los materiales.</p>
+          <p class="text-center text-corpo font-medium cursor-pointer">Ver los documentos &gt;</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition max-w-xs mx-auto">
+          <div class="flex justify-center mb-4">
+            <img src="./symbols_guide.svg" alt="" class="w-28 h-28 object-contain" />
+          </div>
+          <h1 class="font-semibold text-lg mb-2 text-center">Guía de Colores</h1>
+          <p class="text-justify text-sm mb-4">Referencia rápida con los tonos oficiales de la marca Xtrim en distintos formatos (HEX, RGB y CMYK).</p>
+          <p class="text-center text-corpo font-medium cursor-pointer">Ver los documentos &gt;</p>
+        </div>
+
+        <div class="bg-white rounded-xl shadow p-6 hover:shadow-lg transition max-w-xs mx-auto">
+          <div class="flex justify-center mb-4">
+            <img src="./symbols_picturefolder.svg" alt="" class="w-28 h-28 object-contain" />
+          </div>
+          <h1 class="font-semibold text-lg mb-2 text-center">Logo en PNG y SVG</h1>
+          <p class="text-justify text-sm mb-4">Archivos del logotipo en alta calidad y fondo transparente, listos para cualquier aplicación.</p>
+          <p class="text-center text-corpo font-medium cursor-pointer">Ver los documentos &gt;</p>
+        </div>
+      </div>
+      
+</div>

@@ -1,0 +1,141 @@
+<nav class="border-gray-200">
+    <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
+        <a routerLink="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="./logoxmorado.png" class="h-12" alt="Xtrim" loading="lazy" />
+        </a>
+    </div>
+</nav>
+<nav [ngClass]="{'fixed top-0 left-0 right-0 z-50 shadow-md': isSticky, 'relative': !isSticky}" class="bg-navbar transition-all duration-300">
+    <div class="max-w-screen-xl px-4 py-3 mx-auto pb-0 flex items-center font-montserrat">
+            <!-- Botón hamburguesa visible solo en móviles -->
+            <button class="md:hidden text-white" (click)="toggleMobileMenu()">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+            <ul class="hidden md:flex flex-row font-semibold  mt-0 space-x-20 rtl:space-x-reverse text-base" >
+                <li
+                  (mouseenter)="setHoverItem('home')"
+                  (mouseleave)="clearHoverItem()"
+                  class="relative pb-2 text-white group"
+                >
+                    <a routerLink="/" >
+                        <img src="./home-icon.svg" class="md:h-5" />
+                    </a>
+                    <div
+                      *ngIf="hoverItem === 'home' || (hoverItem === null && activeItem === 'home')"
+                      class="absolute bottom-0 left-0 h-[4px] w-full bg-[#FFCF00] transition-all duration-300"
+                  ></div>
+                  </li>
+          
+                  <!-- Información Corporativa -->
+                  <li
+                    (mouseenter)="setHoverItem('corporativa')"
+                    (mouseleave)="clearHoverItem()"
+                    class="relative pb-2 text-white group"
+                  >
+                    <button class="flex items-center">
+                      Información Corporativa
+                    </button>
+
+                    <!-- Submenú -->
+                    <div
+                      class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 bg-submenu rounded-lg shadow w-44 z-50"
+                    >
+                      <ul class="py-2 text-sm text-darkmorado">
+                        <li><a href="/quienes-somos" class="block px-4 py-2 hover:bg-gray-100">Quiénes somos</a></li>
+                        <li><a href="/valores-corpo" class="block px-4 py-2 hover:bg-gray-100">Valores Corporativos</a></li>
+                        <li><a href="/politicas" class="block px-4 py-2 hover:bg-gray-100">Políticas Xtrim</a></li>
+                      </ul>
+                    </div>
+
+                    <!-- Línea amarilla (visible si hover o activo) -->
+                    <div
+                      *ngIf="hoverItem === 'corporativa' || (hoverItem === null && activeItem === 'corporativa')"
+                      class="absolute bottom-0 left-0 h-[4px] w-full bg-[#FFCF00] transition-all duration-300"
+                    ></div>
+                  </li>
+
+          
+                  <!-- Eventos y Noticias -->
+                  <li
+                  (mouseenter)="setHoverItem('eventos')"
+                  (mouseleave)="clearHoverItem()"
+                  class="relative pb-2 text-white group"
+                  >
+                    <button class="flex items-center">
+                      Eventos y Noticias
+                    </button>
+                    <div class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 bg-submenu rounded-lg shadow w-44 z-50">
+                      <ul class="py-2 text-sm text-darkmorado">
+                        <li><a href="/xtrim-cuenta" class="block px-4 py-2 hover:bg-gray-100">Xtrim te Cuenta</a></li>
+                        <li><a href="/noticias" class="block px-4 py-2 hover:bg-gray-100">Noticias Destacadas</a></li>
+                      </ul>
+                    </div>
+                    <div
+                    *ngIf="hoverItem === 'eventos' || (hoverItem === null && activeItem === 'eventos')"
+                    class="absolute bottom-0 left-0 h-[4px] w-full bg-[#FFCF00] transition-all duration-300"
+                  ></div>
+                  </li>
+                <li
+                (mouseenter)="setHoverItem('colaboradores')"
+                (mouseleave)="clearHoverItem()"
+                class="relative pb-2 text-white group"
+                >
+                    <button class="flex items-center">
+                        Beneficios para Colaboradores
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 bg-submenu rounded-lg shadow w-44 z-50">
+                        <ul class="py-2 text-sm text-darkmorado">
+                          <li>
+                            <a href="/salud" class="block px-4 py-2 hover:bg-gray-100">Salud y Seguridad</a>
+                          </li>
+                          <li>
+                            <a href="/beneficios-corpo" class="block px-4 py-2 hover:bg-gray-100">Beneficios Corporativos</a>
+                          </li>
+                        </ul>
+                    </div>
+                    <div
+                    *ngIf="hoverItem === 'colaboradores' || (hoverItem === null && activeItem === 'colaboradores')"
+                    class="absolute bottom-0 left-0 h-[4px] w-full bg-[#FFCF00] transition-all duration-300"
+                  ></div>
+                </li>
+                <li
+                (mouseenter)="setHoverItem('marca')"
+                (mouseleave)="clearHoverItem()"
+                class="relative pb-2 text-white group"
+                >
+                    <button class="flex items-center">
+                        Branding
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div class="hidden group-hover:block absolute top-full left-1/2 transform -translate-x-1/2 bg-submenu rounded-lg shadow w-44 z-50">
+                        <ul class="py-2 text-sm text-darkmorado">
+                          <li>
+                            <a href="/manual-marca" class="block px-4 py-2 hover:bg-gray-100">Manual de marca</a>
+                          </li>
+                        </ul>
+                    </div>
+                    <div
+                    *ngIf="hoverItem === 'marca' || (hoverItem === null && activeItem === 'marca')"
+                    class="absolute bottom-0 left-0 h-[4px] w-full bg-[#FFCF00] transition-all duration-300"
+                  ></div>
+                </li>
+            </ul>
+            <!-- Menú vertical responsive para móviles -->
+            <div *ngIf="isMobileMenuOpen" class="md:hidden bg-navbar px-4 pb-4">
+              <ul class="flex flex-col space-y-2 text-white">
+                <li><a routerLink="/" (click)="closeMobileMenu()">Inicio</a></li>
+                <li><a routerLink="/quienes-somos" (click)="closeMobileMenu()">Quiénes somos</a></li>
+                <li><a routerLink="/valores-corpo" (click)="closeMobileMenu()">Valores Corporativos</a></li>
+                <li><a routerLink="/politicas" (click)="closeMobileMenu()">Políticas Xtrim</a></li>
+                <li><a routerLink="/xtrim-cuenta" (click)="closeMobileMenu()">Xtrim te Cuenta</a></li>
+                <li><a routerLink="/noticias" (click)="closeMobileMenu()">Noticias Destacadas</a></li>
+                <li><a routerLink="/salud" (click)="closeMobileMenu()">Salud y Seguridad</a></li>
+                <li><a routerLink="/beneficios-corpo" (click)="closeMobileMenu()">Beneficios Corporativos</a></li>
+                <li><a routerLink="/manual-marca" (click)="closeMobileMenu()">Manual de marca</a></li>
+              </ul>
+            </div>
+    </div>
+</nav>

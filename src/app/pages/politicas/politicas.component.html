@@ -1,0 +1,89 @@
+<div class="font-ubuntu">
+    <!-- Seccion 1: Titulo y subtitulo -->
+    <div class="mb-10 px-6 md:px-12 lg:px-20 py-8">
+        <h1 class="text-corpo text-3xl font-medium mb-2">Políticas de Xtrim</h1>
+        <p class="text-black text-xl">En Xtrim®, estamos comprometidos con la ética, la transparencia y la eficiencia en cada una de nuestras acciones. 
+A continuación, te presentamos nuestras principales políticas internas, disponibles para consulta y descarga.</p>
+    </div>
+
+    <!-- Sección 2: Documentos PDF -->
+    <div class="flex justify-center">
+        <div class="w-full max-w-4xl flex flex-col gap-6 mb-10">
+        <div *ngFor="let doc of documentosPagina" class="border border-darkcorpo rounded-xl shadow-md overflow-hidden">
+            <!-- Encabezado -->
+            <div class="bg-corpo text-white flex justify-between items-center px-6 py-4">
+            <h2 class="text-lg font-semibold">{{ doc.titulo }}</h2>
+            <button
+                (click)="abrirModal(doc.titulo, doc.enlace)"
+                class="bg-white text-corpo font-medium px-4 py-1 rounded hover:bg-gray-100 transition cursor-pointer"
+            >
+                Ver documento
+            </button>
+            </div>
+
+            <!-- Descripción -->
+            <div class="bg-white px-6 py-4 text-black text-sm">
+            {{ doc.descripcion }}
+            </div>
+        </div>
+
+        <!-- Paginación -->
+        <div class="flex justify-center mt-6 gap-2">
+            <button
+            (click)="cambiarPagina(paginaActual - 1)"
+            [disabled]="paginaActual === 1"
+            class="px-3 py-1 rounded border text-corpo border-corpo hover:bg-corpo hover:text-white transition disabled:opacity-50"
+            >
+            &laquo;
+            </button>
+
+            <ng-container *ngFor="let page of [].constructor(totalPaginas()); let i = index">
+            <button
+                (click)="cambiarPagina(i + 1)"
+                [ngClass]="{
+                'bg-corpo text-white': paginaActual === i + 1,
+                'text-corpo border border-corpo hover:bg-corpo hover:text-white': paginaActual !== i + 1
+                }"
+                class="px-3 py-1 rounded transition"
+            >
+                {{ i + 1 }}
+            </button>
+            </ng-container>
+
+            <button
+            (click)="cambiarPagina(paginaActual + 1)"
+            [disabled]="paginaActual === totalPaginas()"
+            class="px-3 py-1 rounded border text-corpo border-corpo hover:bg-corpo hover:text-white transition disabled:opacity-50"
+            >
+            &raquo;
+            </button>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- Modal para PDF -->
+    <div *ngIf="modalAbierto" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg w-full max-w-4xl h-[85vh] relative p-6">
+        <button
+        (click)="cerrarModal()"
+        class="absolute top-2 right-4 text-black text-2xl font-bold cursor-pointer"
+        >&times;</button>
+
+        <h2 class="text-xl font-semibold text-corpo mb-4">{{ pdfTitulo }}</h2>
+
+        <embed [src]="pdfRuta" type="application/pdf" class="w-full h-[calc(100%-80px)] rounded border" />
+
+        <div class="flex justify-end mt-4">
+        <a
+            [href]="pdfRuta"
+            download
+            class="bg-[linear-gradient(var(--color-grad-start),var(--color-grad-end))] text-white px-4 py-2 rounded-lg hover:bg-[linear-gradient(var(--color-hover),var(--color-hover))] transition-colors cursor-pointer"
+        >
+            Descargar PDF
+        </a>
+        </div>
+    </div>
+    </div>
+
+</div>

@@ -1,0 +1,146 @@
+<div class="font-ubuntu">
+    <!-- Seccion 1: Titulo y subtitulo -->
+    <div class="mb-10 px-6 md:px-12 lg:px-20 py-8">
+        <h1 class="text-corpo text-3xl font-medium mb-2">Salud y Seguridad para Nuestros Colaboradores</h1>
+        <p class="text-black text-xl">En Xtrim® nos preocupamos por el bienestar integral de nuestro equipo. Por eso, ofrecemos beneficios que aseguran atención médica, bienestar físico y un entorno laboral seguro.</p>
+    </div>
+    <!-- Seccion 2: Card seguro privado -->
+    <div class="px-6 md:px-12 lg:px-20 mb-12">
+      <div 
+        class="max-w-6xl mx-auto bg-white shadow rounded-xl overflow-hidden relative min-h-[480px] flex items-center"
+        style="background-image: url('/../seguro-medico.svg'); background-size: cover; background-position: left;">
+        <div class="relative z-10 w-full md:w-1/2 ml-auto p-8 md:p-14 text-black">
+          <h2 class="text-2xl text-corpo font-semibold mb-4 text-center">Seguro Médico Privado</h2>
+          <p>Desde el primer mes (personal ADM) y cuarto mes (personal VR) accedes a un seguro médico privado con cobertura amplia.</p>
+          <br>
+          <ul class="list-disc list-inside space-y-2">
+            <li>Costo y aporte personal varía según el cargo.</li>
+            <li>Cobertura de exámenes en la red CAM con copagos y deducibles según complejidad.</li>
+            <li>Se requiere autorización previa (mínimo 24h) para exámenes ambulatorios.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seccion 3: Beneficios con fondo morado -->
+    <div class="w-full px-6 md:px-12 lg:px-20 mb-12 font-montserrat">
+      <div class="bg-[#E5D0F6] rounded-2xl shadow-lg max-w-6xl mx-auto p-4 md:p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#3F3F46]"> 
+          <!-- Beneficio 1 -->
+          <div class="flex flex-col items-center text-center px-4 py-6 space-y-3">
+            <img src="./icon-farmacias.svg" alt="Farmacias" class="w-12 h-12" />
+            <h3 class="text-base font-semibold text-black leading-tight">
+              Convenios con<br />Farmacias
+            </h3>
+            <p class="text-[#3F3F46] text-sm h-[64px] flex items-center justify-center text-justify font-medium mb-10">
+              Crédito disponible en farmacias de redes aliadas con cupo asignado según tu cargo.
+            </p>
+            <a 
+              class="text-corpo text-xs hover:underline font-bold cursor-pointer"
+              (click)="abrirModal('Convenio con Farmacias', '/salud-convenio.pdf')">
+              Ver documento completo &gt;
+            </a>
+          </div>
+          <!-- Beneficio 2 -->
+          <div class="flex flex-col items-center text-center px-4 py-6 space-y-3">
+            <img src="./icon-form-medico.svg" alt="Formularios Médicos" class="w-12 h-12" />
+            <h3 class="text-base font-semibold text-black leading-tight">
+              Formularios<br />Médicos
+            </h3>
+            <p class="text-[#3F3F46] text-sm h-[64px] flex items-center justify-center text-justify font-medium mb-10">
+              Acceso a los formularios necesarios para autorizaciones médicas, reembolsos o gestión de seguros.
+            </p>
+            <a 
+              class="text-corpo text-xs hover:underline font-bold cursor-pointer"
+              (click)="abrirModal('Formularios Médicos', '/salud-form.pdf')">
+              Ver documento completo &gt;
+            </a>
+          </div>
+          <!-- Beneficio 3 -->
+          <div class="flex flex-col items-center text-center px-4 py-6 space-y-3">
+            <img src="./icon-reglamento-salud.svg" alt="Reglamento Salud" class="w-12 h-12" />
+            <h3 class="text-base font-semibold text-black leading-tight">
+              Reglamento de Seguridad y Salud Ocupacional
+            </h3>
+            <p class="text-[#3F3F46] text-sm h-[64px] flex items-center justify-center text-justify font-medium mb-10">
+              Documento oficial que establece las normas para garantizar entornos de trabajo seguros y saludables en toda la empresa.
+            </p>
+            <a 
+              class="text-corpo text-xs hover:underline font-bold cursor-pointer"
+              (click)="abrirModal('Reglamento de Seguridad y Salud Ocupacional', '/salud-seguridad.pdf')">
+              Ver documento completo &gt;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seccion 4: Ver documento de salud-->
+    <div class="bg-white w-full py-8 px-6 mb-12">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+          <h3 class="text-corpo text-2xl font-medium mb-2">¿Quieres ver el detalle completo de los beneficios en Salud?</h3>
+          <p>Revisa centros médicos, reglamentos y casos especiales de los Beneficios en Salud.</p>
+        </div>
+        <button
+          (click)="abrirModal('Beneficios en Salud', '/salud-docgroup.pdf')" 
+          class="bg-white text-lightblack border-2 border-lightcorpo px-4 py-2 rounded-lg hover:border-lightblack hover:bg-corpogray cursor-pointer whitespace-nowrap">
+          Ver el documento completo
+        </button>
+
+      </div>
+    </div>
+    <!-- Modal para PDF -->
+    <div *ngIf="modalAbierto" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+      <div class="bg-white rounded-lg w-full max-w-4xl h-[85vh] relative p-6">
+        <button (click)="cerrarModal()" class="absolute top-2 right-4 text-black text-2xl font-bold cursor-pointer">&times;</button>
+        
+        <h2 class="text-xl font-semibold text-corpo mb-4">{{ pdfTitulo }}</h2>
+        
+        <embed [src]="pdfRuta" type="application/pdf" class="w-full h-[calc(100%-80px)] rounded border" />
+
+        <div class="flex justify-end mt-4">
+          <a [href]="pdfRuta" download class="bg-[linear-gradient(var(--color-grad-start),var(--color-grad-end))] text-white px-4 py-2 rounded-lg hover:bg-[linear-gradient(var(--color-hover),var(--color-hover))] transition-colors cursor-pointer">
+            Descargar PDF
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seccion 5: FAQ -->
+    <div class="w-full py-12 px-6 md:px-12 lg:px-20">
+      <div class="max-w-4xl mx-auto">
+
+        <h2 class="text-center text-3xl font-bold text-corpo mb-2">¿Tienes alguna duda?</h2>
+        <p class="text-center text-xl text-corpo font-medium mb-10">¡Tranquilo! Aclaramos todas tus dudas a continuación</p>
+
+        <div *ngFor="let pregunta of preguntas; let i = index" class="mb-4">
+          
+          <!-- Pregunta -->
+          <div 
+            (click)="togglePregunta(i)"
+            class="bg-white cursor-pointer flex items-center px-4 py-3 transition-all duration-300 border border-gray-200 shadow-sm"
+            [ngClass]="{
+              'rounded-lg': !pregunta.abierta,
+              'rounded-t-lg border-b-0': pregunta.abierta
+            }">
+            <img 
+              [src]="pregunta.abierta ? 'icon-minus.svg' : 'icon-plus.svg'" 
+              alt="Toggle Icon" 
+              class="w-6 h-6 mr-4 transition-transform duration-300">
+            <span class="text-base font-medium text-black">{{ pregunta.titulo }}</span>
+          </div>
+          
+          <!-- Respuesta  -->
+          <div 
+            *ngIf="pregunta.abierta"
+            @accordionAnimation
+            class="bg-white border border-t-0 border-gray-200 rounded-b-lg px-4 py-3 text-sm text-gray-700 shadow-sm overflow-hidden" [innerHTML]="pregunta.respuesta">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</div>
